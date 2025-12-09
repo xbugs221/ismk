@@ -53,6 +53,9 @@ class Scheduler(SchedulerBase):
         Args:
             jobs (list):    list of jobs
         """
+        # Ensure selectable_jobs is a list for indexed access
+        selectable_jobs = list(selectable_jobs)
+
         # each job is an item with one copy (0-1 MDKP)
         n = len(selectable_jobs)
         x = [0] * n  # selected jobs
@@ -94,7 +97,9 @@ class Scheduler(SchedulerBase):
 
             # Step 3: compute rewards on cumulative sums
             reward = calc_reward()
-            j_sel = max(E, key=reward.__getitem__)  # argmax
+            # Use jobid as tie-breaker for deterministic behavior across Python versions
+            # when rewards are equal
+            j_sel = max(E, key=lambda j: (reward[j], selectable_jobs[j].jobid))  # argmax
 
             # Step 4: batch increment
             y_sel = y[j_sel]
