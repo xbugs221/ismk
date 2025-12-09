@@ -54,7 +54,8 @@ class Scheduler(SchedulerBase):
             jobs (list):    list of jobs
         """
         # Ensure selectable_jobs is a list for indexed access
-        selectable_jobs = list(selectable_jobs)
+        # Sort by jobid to ensure deterministic behavior across Python versions
+        selectable_jobs = sorted(selectable_jobs, key=lambda j: j.jobid)
 
         # each job is an item with one copy (0-1 MDKP)
         n = len(selectable_jobs)

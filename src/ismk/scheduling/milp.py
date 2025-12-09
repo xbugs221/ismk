@@ -59,6 +59,9 @@ class Scheduler(SchedulerBase):
         from pulp import lpSum
         from pulp import PulpSolverError
 
+        # Sort selectable_jobs by jobid to ensure deterministic behavior across Python versions
+        selectable_jobs = sorted(selectable_jobs, key=lambda j: j.jobid)
+
         scheduled_jobs = {
             job: pulp.LpVariable(
                 f"job_{idx}", lowBound=0, upBound=1, cat=pulp.LpInteger
