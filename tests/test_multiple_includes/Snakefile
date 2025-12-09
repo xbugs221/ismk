@@ -1,0 +1,9 @@
+from pathlib import Path
+
+
+include: 'test_rule.ismk'
+include: 'test_second_rule.ismk'
+include: Path('test_third_rule.ismk')
+
+rule all:
+    input: rules.test_third_rule.output
