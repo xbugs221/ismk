@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "ismk"
-version = "2025.12.09"
+version = "2025.12.10"
 description = "Modified SMK library that supports defining workflows via strings without Snakefile"
 readme = "README.md"
 requires-python = ">= 3.11"
