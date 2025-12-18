@@ -1,0 +1,6 @@
+
+
+include: "https://github.com/ismk/ismk/raw/main/tests/test05/Snakefile"
+
+rule:
+	input: "test.predictions"

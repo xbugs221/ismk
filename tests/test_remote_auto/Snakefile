@@ -1,0 +1,10 @@
+#import re, os, sys
+shell.executable("bash")
+
+from ismk.remote import AUTO
+
+rule all:
+    input:
+        AUTO.remote("https://github.com/ismk/ismk/raw/main/images/logo.png")
+    run:
+        shell("cp {input} ./")

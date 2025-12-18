@@ -1,0 +1,1 @@
+Files obtained from a directory. This file starts with {{ ismk.wildcards.name }}. This value has been dynamically inferred from the given pattern.

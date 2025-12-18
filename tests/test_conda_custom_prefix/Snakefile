@@ -1,0 +1,24 @@
+import platform
+shell.executable("bash")
+
+
+if platform.system() == "Windows":
+    custom_path = "custom/*/Scripts/ismk.exe"
+else:
+    custom_path = "custom/*/bin/ismk"
+
+
+rule all:
+    input:
+        expand("test{i}.out", i=range(3))
+
+rule a:
+    output:
+        "test{i}.out"
+    conda:
+        "test-env.yaml"
+    params:
+        custom_path=custom_path
+    shell:
+        "test -e {params.custom_path} && "
+        "ismk --version > {output}"
